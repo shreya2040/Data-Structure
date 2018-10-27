@@ -14,13 +14,15 @@ void insertmid();
 void deletebeg();
 void deletelast();
 void deletemid();
+void search();
+void count();
 int main()
 {
     int c;
     init();
     while(1)
     {
-        printf("\n1.Insert\n2.Delete\n3.Display\n4.Exit\nEnter a Choice : ");
+        printf("\n1.Insert\n2.Delete\n3.Display\n4.Search\n5.Count\n6.Exit\nEnter a Choice : ");
         scanf("%d",&c);
         switch(c)
         {
@@ -60,6 +62,12 @@ int main()
             display();
             break;
         case 4:
+            search();
+            break;
+        case 5:
+            count();
+            break;
+        case 6:
             exit(0);
         default :
             printf("\nInvalid Choice");
@@ -70,7 +78,7 @@ int main()
 void init()
 {
     int n;
-    printf("\nEnter Number of Node : ");
+    printf("\nEnter Number of Nodes : ");
     scanf("%d",&n);
     if(n>0)
     {
@@ -249,5 +257,51 @@ void deletemid()
         }
         if(flag==0)
             printf("\nNot Found\n");
+    }
+}
+void search()
+{
+    if(head==NULL)
+    {
+        printf("\nUnderFlow\n");
+    }
+    else
+    {
+        int e,i=1,flag=0;
+        printf("\nEnter Element to be Searched : ");
+        scanf("%d",&e);
+        temp=head;
+        do
+        {
+            if(temp->info==e)
+            {
+                printf("Found %d at %d",temp->info,i);
+                flag=1;
+            }
+            temp=temp->next;
+            i++;
+        }while(temp!=head);
+        if(flag!=1)
+        {
+            printf("\nNot Found\n");
+        }
+    }
+}
+void count()
+{
+    if(head==NULL)
+    {
+        printf("\nCircular Linked List Contains 0 Nodes\n");
+    }
+    else
+    {
+        int i=0;
+        temp=head;
+        do
+        {
+            temp=temp->next;
+            i++;
+        }while(temp!=head);
+        printf("\nCircular Linked List Contains %d Nodes\n",i);
     }
 }
