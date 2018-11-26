@@ -1,22 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
-void enqueue();
-void dequeue();
-void display();
 typedef struct queue
 {
     int info;
     struct queue *next;
-}queue;
-queue *front=NULL,*temp;
+}Queue;
+Queue *Front = NULL,*Rear = NULL;
+void enqueue();
+void dequeue();
+void display();
 int main()
 {
-    int c;
+    int i;
     while(1)
     {
-        printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\nEnter a Choice : ");
-        scanf("%d",&c);
-        switch(c)
+        printf("1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\nEnter Choice : ");
+        scanf("%d",&i);
+        switch(i)
         {
         case 1:
             enqueue();
@@ -29,50 +29,58 @@ int main()
             break;
         case 4:
             exit(0);
-        default:
-            printf("\nEnter a Valid Choice");
         }
     }
     return 0;
 }
-void enqueue()
+void display()
 {
-    int element;
-    queue *newnode;
-    newnode = (queue *)malloc(sizeof(queue));
-    printf("Enter element to be Inserted : ");
-    scanf("%d",&element);
-    newnode->info=element;
-    newnode->next=NULL;
-    if(front==NULL)
+    if(Front==NULL)
     {
-        front=newnode;
+        printf("\nUnderFlow\n");
     }
     else
     {
-        for(temp=front;temp->next!=NULL;temp=temp->next);
-        temp->next=newnode;
+        Queue *temp;
+        printf("\nQueue : \n");
+        for(temp=Front;temp!=NULL;temp=temp->next)
+        {
+            printf("%d ",temp->info);
+        }
+        printf("\n");
+    }
+}
+void enqueue()
+{
+    Queue *newnode;
+    newnode = (Queue *)malloc(sizeof(Queue));
+    newnode->next=NULL;
+    printf("\nEnter Data to be Inserted : ");
+    int data;
+    scanf("%d",&data);
+    newnode->info=data;
+    if(Front==NULL)
+    {
+        Front=newnode;
+        Rear=newnode;
+    }
+    else
+    {
+        Rear->next=newnode;
+        Rear=newnode;
     }
 }
 void dequeue()
 {
-    if(front==NULL)
+    if(Front==NULL)
     {
-        printf("\nQueue is Empty\n");
+        printf("\nUnderFlow\n");
     }
     else
     {
-        temp=front;
-        front=front->next;
-        printf("\nDeleted : %d",temp->info);
+        Queue *temp = Front;
+        Front=Front->next;
+        printf("\nDequeued %d\n",temp->info);
         free(temp);
-    }
-}
-void display()
-{
-    printf("\nQueue Contains : \n");
-    for(temp=front;temp!=NULL;temp=temp->next)
-    {
-        printf("%d ",temp->info);
     }
 }
