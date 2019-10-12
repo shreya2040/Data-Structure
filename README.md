@@ -1,2 +1,2 @@
 # Data-Structure
-Basics of Data Structures in Programming using C language .
+Basics of Data Structures in Programming using C.
