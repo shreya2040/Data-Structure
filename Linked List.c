@@ -28,7 +28,7 @@ int main()
         switch(c)
         {
         case 1:
-            printf("1.Insert at Beginning\n2.Insert at Last\n3.Insert at Position\nEnter a Choice : ");
+            printf("\n1.Insert at Beginning\n2.Insert at Last\n3.Insert at Position\nEnter a Choice : ");
             scanf("%d",&c);
             switch(c)
             {
