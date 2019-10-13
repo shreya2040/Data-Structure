@@ -3,7 +3,7 @@ int Search(int * ,int ,int );
 int main()
 {
     printf("----> I Assume You Enter Sorted Array <----\n");
-    int a[10],n,i,x,r;
+    int a[100],n,i,x,r;
     printf("Enter Number of Elements : ");
     scanf("%d",&n);
     printf("Enter %d Elements\n",n);
